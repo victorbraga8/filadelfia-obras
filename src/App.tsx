@@ -6,6 +6,9 @@ import Institucional from './components/institucional';
 import Contato from './components/contato';
 import Footer from './components/footer';
 import Cta from './components/cta';
+import Fleet from './components/product-focus';
+import ClientsSection from './components/clients';
+import Gallery from './components/gallery';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,6 +35,9 @@ function App() {
       <Cta />
       <Services />
       <Institucional />
+      <Fleet />
+      <ClientsSection />
+      <Gallery />
       <Contato />
       <Footer />
     </div>

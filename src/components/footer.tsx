@@ -1,16 +1,43 @@
+import { Facebook, Instagram, Linkedin } from "lucide-react";
+
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-industrial-950 text-slate-400 py-12 text-center md:text-left border-t border-slate-800">
+    <footer className="bg-slate-950 py-8 border-t border-slate-900 relative z-50 overflow-hidden">
+
+      {/* Background de segurança para evitar vazamentos visuais */}
+      <div className="absolute inset-0 bg-slate-950 -z-10"></div>
+
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <span className="text-2xl font-bold text-white tracking-tighter">FILADÉLFIA</span>
-            <p className="text-sm mt-2">© 2025 Filadélfia Obras. Todos os direitos reservados.</p>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+
+          {/* Lado Esquerdo: Redes Sociais */}
+          <div className="flex gap-4 order-2 md:order-1">
+            <a href="#" className="p-2 rounded-full bg-slate-900 text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300 border border-slate-800 hover:border-blue-500">
+              <Instagram size={18} />
+            </a>
+            <a href="#" className="p-2 rounded-full bg-slate-900 text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300 border border-slate-800 hover:border-blue-500">
+              <Linkedin size={18} />
+            </a>
+            <a href="#" className="p-2 rounded-full bg-slate-900 text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300 border border-slate-800 hover:border-blue-500">
+              <Facebook size={18} />
+            </a>
           </div>
-          <div className="flex gap-6 text-sm">
-            <a href="#" className="hover:text-white transition-colors">Política de Privacidade</a>
-            <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
+
+          {/* Centro: Identidade Visual (Logo) */}
+          <div className="order-1 md:order-2">
+            <div className="flex items-center gap-2 text-white font-bold text-xl tracking-tighter select-none">
+              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-sm shadow-lg shadow-blue-900/50 text-white font-black">F</div>
+              FILADÉLFIA
+            </div>
           </div>
+
+          {/* Lado Direito: Copyright */}
+          <div className="text-slate-500 text-xs md:text-sm order-3 text-center md:text-right">
+            <p>© {currentYear} Filadélfia Obras. <span className="hidden md:inline">|</span> <br className="md:hidden" /> Todos os direitos reservados.</p>
+          </div>
+
         </div>
       </div>
     </footer>
