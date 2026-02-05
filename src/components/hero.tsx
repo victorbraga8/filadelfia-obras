@@ -55,7 +55,7 @@ export default function Hero({ scrollToSection }: any) {
   const goToSlide = (index: number) => setCurrent(index);
 
   return (
-    <section id="início" className="relative h-screen w-screen flex items-center overflow-hidden bg-slate-900">
+    <section id="início" className="relative h-screen w-full flex items-center overflow-hidden bg-slate-900">
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -132,14 +132,14 @@ export default function Hero({ scrollToSection }: any) {
                   className="relative group py-4 px-1"
                 >
                   <div className={`transition-all duration-300 rounded-full ${current === idx
-                      ? "w-3 h-3 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-                      : "w-2 h-2 bg-white/30 hover:bg-white/60"
+                    ? "w-3 h-3 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"
+                    : "w-2 h-2 bg-white/30 hover:bg-white/60"
                     }`} />
                 </button>
               ))}
             </div>
 
-            <div className="w-full md:max-w-xs h-1 bg-white/10 rounded-full overflow-hidden relative">
+            <div className="hidden md:block w-full md:max-w-xs h-1 bg-white/10 rounded-full overflow-hidden relative">
               <motion.div
                 key={current}
                 initial={{ width: "0%" }}
