@@ -1,4 +1,4 @@
-import { Instagram, Mail, MapPin, Phone, MessageCircle, Send, User, Building, FileText, ShieldCheck } from "lucide-react";
+import { Instagram, Mail, MapPin, Phone, MessageCircle, Send, User, Building, FileText } from "lucide-react";
 
 export default function Contato() {
   return (
