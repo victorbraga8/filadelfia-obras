@@ -39,13 +39,14 @@ export default function NavBar({ isScrolled, scrollToSection, setIsMobileMenuOpe
         <div className="container mx-auto px-6 flex justify-between items-center">
 
           <div
-            className="text-2xl font-bold text-white tracking-tighter flex items-center gap-2 cursor-pointer select-none group"
+            className="flex items-center gap-2 cursor-pointer select-none group"
             onClick={() => scrollToSection('início')}
           >
-            <div className="w-10 h-10 bg-blue-600 rounded flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-900/50 group-hover:scale-105 transition-transform">
-              F
-            </div>
-            <span className="text-shadow-sm group-hover:text-blue-100 transition-colors">FILADÉLFIA</span>
+            <img
+              src="/logo.webp"
+              alt="Filadélfia Obras"
+              className="h-16 md:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-lg"
+            />
           </div>
 
           <ul className="hidden md:flex items-center space-x-6 lg:space-x-8">
