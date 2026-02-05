@@ -1,90 +1,141 @@
-import { Factory, Droplets, Zap, Wrench, ArrowUpRight } from 'lucide-react';
+import { Factory, Droplets, Zap, Wrench, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React from 'react';
 
 const services = [
   {
     id: "01",
     title: "Hidráulica e Saneamento",
     desc: "Infraestrutura completa para redes de água e esgoto. Instalação de tubulações de grande porte e estações de tratamento.",
-    icon: <Droplets strokeWidth={1.5} />
+    icon: Droplets,
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop",
+    features: ["Redes de Água", "Estações de Tratamento", "Drenagem"]
   },
   {
     id: "02",
     title: "Caldeiraria Industrial",
     desc: "Fabricação e manutenção de estruturas metálicas, tanques e tubulações de alta pressão com soldas especiais.",
-    icon: <Factory strokeWidth={1.5} />
+    icon: Factory,
+    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop",
+    features: ["Tanques Metálicos", "Soldas Especiais", "Tubulações"]
   },
   {
     id: "03",
     title: "Manutenção Predial",
     desc: "Revitalização de fachadas, impermeabilização e reformas estruturais em ambientes corporativos e industriais.",
-    icon: <Wrench strokeWidth={1.5} />
+    icon: Wrench,
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop",
+    features: ["Fachadas", "Impermeabilização", "Reformas"]
   },
   {
     id: "04",
     title: "Instalações Elétricas",
     desc: "Projetos de alta tensão, subestações e automação industrial focados em eficiência energética e segurança.",
-    icon: <Zap strokeWidth={1.5} />
+    icon: Zap,
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop",
+    features: ["Alta Tensão", "Subestações", "Automação"]
   }
 ];
 
 export default function Services() {
   return (
-    <section id="serviços" className="py-24 bg-slate-50 relative overflow-hidden">
+    <section id="serviços" className="py-20 md:py-32 bg-slate-100 relative overflow-hidden">
 
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-100/50 skew-x-12 translate-x-20 pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-[0.05]" style={{
+        backgroundImage: 'radial-gradient(#000 1px, transparent 1px)',
+        backgroundSize: '32px 32px'
+      }}>
+      </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="max-w-2xl">
-            <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-2 block">
-              Áreas de Atuação
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
-              Soluções integradas para <br />
-              desafios complexos.
+
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
+          <div className="max-w-3xl relative">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-[3px] w-12 bg-blue-600"></div>
+              <span className="text-blue-700 font-bold tracking-widest uppercase text-xs md:text-sm">
+                Nossas Especialidades
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
+              Soluções integradas para <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-600">
+                desafios complexos.
+              </span>
             </h2>
           </div>
-          <div className="hidden md:block w-32 h-1 bg-slate-200 mb-2">
-            <div className="w-1/2 h-full bg-blue-600"></div>
+
+          <div className="w-full lg:max-w-sm bg-white p-6 border-l-4 border-blue-600 shadow-sm rounded-r-lg">
+            <p className="text-slate-700 text-sm md:text-base font-medium leading-relaxed">
+              Excelência técnica e conformidade normativa em cada projeto entregue, garantindo segurança e eficiência operacional.
+            </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-white p-8 group relative overflow-hidden border border-slate-200 hover:border-blue-500 transition-colors duration-300 shadow-sm hover:shadow-xl"
-            >
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity duration-300">
-                <ArrowUpRight className="w-6 h-6 text-blue-600" />
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          {services.map((service, index) => {
+            const Icon = service.icon;
 
-              <span className="text-5xl font-bold text-slate-100 group-hover:text-blue-50 transition-colors duration-300 absolute -bottom-4 -right-4 select-none">
-                {service.id}
-              </span>
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="group relative h-[450px] rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-blue-900/20 transition-all duration-500 bg-slate-900"
+              >
+                <div className="absolute inset-0 w-full h-full">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40"
+                  />
+                </div>
 
-              <div className="w-14 h-14 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                {React.cloneElement(service.icon as React.ReactElement, { className: "w-7 h-7" })}
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">
-                {service.title}
-              </h3>
+                <div className="relative z-10 h-full p-6 md:p-8 flex flex-col">
 
-              <p className="text-slate-600 text-sm leading-relaxed mb-6 relative z-10">
-                {service.desc}
-              </p>
+                  <div className="flex justify-between items-start mb-auto">
+                    <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:border-blue-500 group-hover:text-white transition-all duration-500 shadow-lg">
+                      <Icon className="w-6 h-6" strokeWidth={1.5} />
+                    </div>
+                    <span className="text-4xl font-bold text-white/10 group-hover:text-white/20 transition-colors font-mono">
+                      {service.id}
+                    </span>
+                  </div>
 
-              <div className="w-full h-0.5 bg-slate-100 mt-auto group-hover:bg-blue-500/30 transition-colors"></div>
-            </motion.div>
-          ))}
+                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors leading-tight">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-slate-300 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 h-0 group-hover:h-auto overflow-hidden">
+                      {service.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 pt-6 border-t border-white/10 flex flex-col gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {service.features.map((feature, i) => (
+                        <span key={i} className="text-[10px] font-bold uppercase tracking-wider text-blue-200 bg-blue-950/50 px-2 py-1 rounded border border-blue-500/30">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center gap-2 text-white/50 group-hover:text-blue-400 transition-colors text-xs font-bold uppercase tracking-widest mt-2">
+                      <span>Ver Projetos</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

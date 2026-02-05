@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type PanInfo } from "framer-motion";
+import { Button } from "./ui/button";
 
 const slides = [
   {
@@ -15,7 +16,7 @@ const slides = [
     ),
     description: "Especialistas em hidráulica, caldeiraria e serviços urbanos. A união perfeita entre força bruta e precisão técnica.",
     primaryBtn: "Nossos Serviços",
-    secondaryBtn: "Conheça a Filadélfia"
+    secondaryBtn: "A Empresa"
   },
   {
     id: 2,
@@ -27,7 +28,7 @@ const slides = [
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300">Saneamento.</span>
       </>
     ),
-    description: "Operamos com caminhões de sucção a vácuo e hidrojateamento de alta performance. Equipamentos modernos para limpeza de fossas e desobstrução de redes industriais.",
+    description: "Operamos com caminhões de sucção a vácuo e hidrojateamento de alta performance. Equipamentos modernos para limpeza de fossas.",
     primaryBtn: "Solicitar Caminhão",
     secondaryBtn: "Ver Frota"
   },
@@ -41,22 +42,45 @@ const slides = [
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Grandes Plantas.</span>
       </>
     ),
-    description: "Equipes certificadas em solda, montagem eletromecânica e manutenção preventiva. Garantia de continuidade operacional para sua indústria.",
+    description: "Equipes certificadas em solda, montagem eletromecânica e manutenção preventiva. Garantia de continuidade operacional.",
     primaryBtn: "Falar com Engenheiro",
-    secondaryBtn: "Projetos Recentes"
+    secondaryBtn: "Projetos"
   }
 ];
 
 export default function Hero({ scrollToSection }: any) {
   const [current, setCurrent] = useState(0);
 
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const nextSlide = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }, []);
+
   const goToSlide = (index: number) => setCurrent(index);
 
-  return (
-    <section id="início" className="relative h-screen w-full flex items-center overflow-hidden bg-slate-900">
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    if (info.offset.x > 50) {
+      prevSlide();
+    } else if (info.offset.x < -50) {
+      nextSlide();
+    }
+  };
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  return (
+    <section
+      id="início"
+      className="relative h-[100dvh] w-screen max-w-none min-w-[100vw] flex items-center overflow-hidden bg-slate-900"
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={slides[current].id}
@@ -68,15 +92,16 @@ export default function Hero({ scrollToSection }: any) {
         >
           <img
             src={slides[current].image}
-            alt="Background Slide"
+            alt="Hero Background"
             className="w-full h-full object-cover"
           />
         </motion.div>
       </AnimatePresence>
 
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950 via-slate-900/80 to-slate-900/20"></div>
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-90 md:hidden"></div>
 
-      <div className="container mx-auto px-6 relative z-20 pt-20 h-full flex flex-col justify-center">
+      <div className="container mx-auto px-6 relative z-20 h-full flex flex-col justify-center pt-12 md:pt-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={slides[current].id}
@@ -84,81 +109,88 @@ export default function Hero({ scrollToSection }: any) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 30 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.05}
+            onDragEnd={handleDragEnd}
+            className="max-w-4xl cursor-grab active:cursor-grabbing pb-32 md:pb-0"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-1 w-12 bg-blue-500"></div>
-              <span className="text-blue-400 font-bold tracking-widest uppercase text-sm">
+            <div className="flex items-center gap-4 mb-4 md:mb-6 min-h-[28px]">
+              <div className="h-1 w-8 md:w-12 bg-blue-500"></div>
+              <span className="text-blue-400 font-bold tracking-widest uppercase text-[11px] leading-none md:text-sm">
                 {slides[current].subtitle}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
-              {slides[current].title}
-            </h1>
+            <div className="min-h-[140px] sm:min-h-[150px] md:min-h-0">
+              <h1 className="text-[34px] leading-[1.06] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 md:mb-6 drop-shadow-lg">
+                {slides[current].title}
+              </h1>
+            </div>
 
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed border-l-4 border-blue-600 pl-6 bg-slate-900/30 backdrop-blur-sm py-2 pr-4 rounded-r-lg">
+            <p className="text-[13.5px] leading-relaxed sm:text-base md:text-xl text-gray-300 mb-7 md:mb-10 max-w-xl md:max-w-2xl border-l-4 border-blue-600 pl-4 md:pl-6 bg-slate-900/30 backdrop-blur-sm py-2.5 pr-4 rounded-r-lg min-h-[92px] sm:min-h-[88px] md:min-h-0">
               {slides[current].description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => scrollToSection('serviços')}
-                className="group bg-blue-600 text-white px-8 py-4 rounded font-bold hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]"
+            <div className="flex flex-row gap-3 w-full sm:w-auto">
+              <Button
+                onClick={() => scrollToSection("serviços")}
+                className="flex-1 sm:flex-none h-11! md:h-14! px-4! md:px-8! bg-blue-600! hover:bg-blue-500! text-white! rounded-lg! font-bold! text-[12px] sm:text-xs md:text-base border-0! outline-none! ring-0! focus:ring-0! shadow-[0_0_20px_rgba(37,99,235,0.3)]! transition-all active:scale-95 flex items-center justify-center gap-2"
               >
                 {slides[current].primaryBtn}
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => scrollToSection('contato')}
-                className="px-8 py-4 rounded font-bold text-white border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all"
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+
+              <Button
+                variant="outline"
+                onClick={() => scrollToSection("contato")}
+                className="flex-1 sm:flex-none h-11! md:h-14! px-4! md:px-8! bg-white/5! backdrop-blur-md! border! border-white/20! hover:bg-white/10! hover:border-white/40! text-white! rounded-lg! font-bold! text-[12px] sm:text-xs md:text-base transition-all active:scale-95 hover:text-white! outline-none! focus:ring-0!"
               >
                 {slides[current].secondaryBtn}
-              </button>
+              </Button>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full z-30 bg-gradient-to-t from-slate-900 to-transparent pb-8 pt-20">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-
-            <div className="flex items-center gap-3">
-              {slides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => goToSlide(idx)}
-                  className="relative group py-4 px-1"
-                >
-                  <div className={`transition-all duration-300 rounded-full ${current === idx
-                    ? "w-3 h-3 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-                    : "w-2 h-2 bg-white/30 hover:bg-white/60"
-                    }`} />
-                </button>
-              ))}
-            </div>
-
-            <div className="hidden md:block w-full md:max-w-xs h-1 bg-white/10 rounded-full overflow-hidden relative">
-              <motion.div
-                key={current}
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 6, ease: "linear" }}
-                onAnimationComplete={nextSlide}
-                className="absolute top-0 left-0 h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-              />
-            </div>
-
-            <div className="flex gap-2 hidden md:flex">
-              <button onClick={prevSlide} className="p-3 rounded-full border border-white/10 hover:bg-white/10 text-white transition-colors active:scale-95">
-                <ChevronLeft size={20} />
+      <div className="absolute bottom-0 left-0 w-full z-30 pb-8 pt-12 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
+        <div className="container mx-auto px-6 flex flex-col items-center gap-5">
+          <div className="flex items-center gap-3">
+            {slides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx)}
+                className="relative group p-2! outline-none! border-none! bg-transparent! focus:outline-none! focus:ring-0!"
+                aria-label={`Ir para slide ${idx + 1}`}
+              >
+                <div
+                  className={`transition-all duration-500 rounded-full! ${current === idx
+                      ? "w-8! h-1.5! bg-blue-500! shadow-[0_0_10px_rgba(59,130,246,0.8)]!"
+                      : "w-2! h-2! bg-white/30! group-hover:bg-white/80!"
+                    }`}
+                />
               </button>
-              <button onClick={nextSlide} className="p-3 rounded-full border border-white/10 hover:bg-white/10 text-white transition-colors active:scale-95">
-                <ChevronRight size={20} />
-              </button>
-            </div>
+            ))}
+          </div>
 
+          <div className="flex gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={prevSlide}
+              className="rounded-full! w-12! h-12! p-0! border! border-white/20! bg-white/5! backdrop-blur-md text-white! hover:bg-white/20! hover:border-white/40! transition-all duration-300 active:scale-95 shadow-lg! shadow-black/20! outline-none! focus:ring-0!"
+            >
+              <ChevronLeft size={24} />
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={nextSlide}
+              className="rounded-full! w-12! h-12! p-0! border! border-white/20! bg-white/5! backdrop-blur-md text-white! hover:bg-white/20! hover:border-white/40! transition-all duration-300 active:scale-95 shadow-lg! shadow-black/20! outline-none! focus:ring-0!"
+            >
+              <ChevronRight size={24} />
+            </Button>
           </div>
         </div>
       </div>

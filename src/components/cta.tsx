@@ -5,59 +5,59 @@ const stats = [
     value: "+10",
     label: "Anos de Mercado",
     desc: "Experiência sólida",
-    icon: <Clock className="w-6 h-6 text-blue-500" />
+    icon: <Clock className="w-5 h-5 md:w-6 md:h-6" />
   },
   {
     value: "+500",
     label: "Obras Entregues",
     desc: "Em todo estado do RJ",
-    icon: <CheckCircle2 className="w-6 h-6 text-blue-500" />
+    icon: <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" />
   },
   {
     value: "100%",
     label: "Equipamento Próprio",
     desc: "Frota e maquinário",
-    icon: <Building2 className="w-6 h-6 text-blue-500" />
+    icon: <Building2 className="w-5 h-5 md:w-6 md:h-6" />
   },
   {
     value: "+50",
     label: "Colaboradores",
     desc: "Técnicos certificados",
-    icon: <Users className="w-6 h-6 text-blue-500" />
+    icon: <Users className="w-5 h-5 md:w-6 md:h-6" />
   }
 ];
 
 export default function Stats() {
   return (
-    <div className="bg-slate-900 border-b border-slate-800 relative z-20">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-800 border-x border-slate-800">
+    <section className="bg-slate-950 py-12 relative z-20 border-b border-slate-800/50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-800 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="group p-8 flex flex-col items-center text-center hover:bg-slate-800/50 transition-colors duration-300 relative overflow-hidden"
+              className="group bg-slate-900 p-6 md:p-10 flex flex-col items-center text-center hover:bg-slate-800/80 transition-all duration-300 relative"
             >
-              <div className="mb-4 p-3 bg-slate-800 rounded-full group-hover:bg-blue-500/10 group-hover:scale-110 transition-all duration-300">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div className="mb-4 p-3 rounded-xl bg-slate-800/50 text-blue-500 group-hover:text-blue-400 group-hover:bg-blue-500/10 group-hover:scale-110 transition-all duration-300 ring-1 ring-white/5">
                 {stat.icon}
               </div>
 
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight group-hover:text-blue-100 transition-colors">
                 {stat.value}
               </h3>
 
-              <p className="text-sm font-bold text-blue-400 uppercase tracking-widest mb-1">
+              <p className="text-[10px] sm:text-xs md:text-sm font-bold text-blue-500 uppercase tracking-widest mb-1.5">
                 {stat.label}
               </p>
 
-              <span className="text-xs text-slate-500 hidden md:block">
+              <span className="text-xs text-slate-400 hidden sm:block">
                 {stat.desc}
               </span>
-
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }

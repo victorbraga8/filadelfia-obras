@@ -32,8 +32,8 @@ export default function NavBar({ isScrolled, scrollToSection, setIsMobileMenuOpe
     <>
       <nav
         className={`fixed w-full z-50 transition-all duration-300 border-b ${isScrolled
-            ? 'bg-slate-950/90 backdrop-blur-md shadow-lg border-slate-800 py-3'
-            : 'bg-transparent border-transparent py-6'
+          ? 'bg-slate-950/90 backdrop-blur-md shadow-lg border-slate-800 py-3'
+          : 'bg-transparent border-transparent py-6'
           }`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
@@ -141,14 +141,17 @@ export default function NavBar({ isScrolled, scrollToSection, setIsMobileMenuOpe
       <AnimatePresence>
         {isScrolled && (
           <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, scale: 0.5, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 50 }}
+            whileHover={{ y: -5, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
             onClick={() => scrollToSection('início')}
-            className="fixed bottom-8 right-6 md:right-10 z-50 p-4 bg-blue-600 text-white rounded-full shadow-xl hover:bg-blue-500 hover:-translate-y-1 transition-all outline-none! focus:outline-none! border-none! focus:ring-0!"
+            className="fixed bottom-8 right-6 md:right-10 z-50 p-4 rounded-full! bg-blue-600! text-white! border-none! outline-none! focus:outline-none! focus:ring-0! shadow-[0_10px_30px_rgba(37,99,235,0.5)]! hover:shadow-[0_10px_40px_rgba(37,99,235,0.7)]! cursor-pointer!"
             aria-label="Voltar ao topo"
           >
-            <ArrowUp size={24} />
+            <ArrowUp size={24} strokeWidth={3} />
           </motion.button>
         )}
       </AnimatePresence>
