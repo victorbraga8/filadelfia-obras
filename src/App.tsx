@@ -1,38 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
-import './App.css'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from 'react';
+import NavBar from './components/nav-bar';
+import Hero from './components/hero';
+import Services from './components/services';
+import Institucional from './components/institucional';
+import Contato from './components/contato';
+import Footer from './components/footer';
+import Cta from './components/cta';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
-    <>
-      <div className='bg-blue-600 '>
-        <a href="https://vite.dev" target="_blank" className=''>
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <div className="flex min-h-svh flex-col items-center justify-center">
-          <Button onClick={() => setCount((count) => count + 1)}>Click me  count is {count}</Button>
-        </div>
-
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 overflow-x-hidden">
+      <NavBar isScrolled={isScrolled} scrollToSection={scrollToSection} setIsMobileMenuOpen={setIsMobileMenuOpen} isMobileMenuOpen={isMobileMenuOpen} />
+      <Hero scrollToSection={scrollToSection} />
+      <Cta />
+      <Services />
+      <Institucional />
+      <Contato />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;

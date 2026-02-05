@@ -2,7 +2,12 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Isso impede rolagem lateral indesejada */
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
