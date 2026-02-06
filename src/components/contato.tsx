@@ -154,7 +154,7 @@ export default function Contato() {
                 <textarea rows={4} className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/10 outline-none transition-all font-medium text-slate-900 resize-none placeholder:text-slate-400" placeholder="Descreva sua necessidade com o máximo de detalhes possível..."></textarea>
               </div>
               <div className="flex justify-center">
-                <button type="button" className="w-1/2! bg-linear-to-r! from-blue-600! to-blue-500! hover:from-blue-500! hover:to-blue-400! text-white! font-bold! py-2! rounded-lg! transition-all! duration-300! shadow-[0_4px_15px_-5px_rgba(37,99,235,0.4)]! hover:shadow-[0_8px_25px_-5px_rgba(37,99,235,0.5)]! hover:-translate-y-0.5! flex! items-center! justify-center! gap-2! group! active:scale-[0.99]! text-sm!">
+                <button type="button" className="md:w-1/2! w-full bg-linear-to-r! from-blue-600! to-blue-500! hover:from-blue-500! hover:to-blue-400! text-white! font-bold! py-2! rounded-lg! transition-all! duration-300! shadow-[0_4px_15px_-5px_rgba(37,99,235,0.4)]! hover:shadow-[0_8px_25px_-5px_rgba(37,99,235,0.5)]! hover:-translate-y-0.5! flex! items-center! justify-center! gap-2! group! active:scale-[0.99]! text-sm!">
                   <span className="text-lg">Enviar Solicitação</span>
                   <Send size={18} className="text-blue-100! group-hover:text-white! group-hover:translate-x-0.5! group-hover:-translate-y-0.5! transition-all! duration-300!" />
                 </button>

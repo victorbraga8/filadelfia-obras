@@ -30,8 +30,8 @@ export default function ClientsSection() {
         </div>
 
         <h3 className="text-2xl md:text-2xl lg:text-3xl text-white tracking-tight mb-4">
-          Parceiros que constroem <br className="hidden sm:block" />
-          <span className="text-5xl font-bold">o Rio conosco</span>
+          Parceiros que constroem <br className="" />
+          <span className="text-4xl! md:text-5xl font-bold">o Rio conosco</span>
         </h3>
 
         <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base font-medium">

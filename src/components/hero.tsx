@@ -18,34 +18,34 @@ const slides = [
     primaryBtn: "Nossos Serviços",
     secondaryBtn: "A Empresa"
   },
-  {
-    id: 2,
-    image: "/caminhao-1.png",
-    subtitle: "Frota Própria e Especializada",
-    title: (
-      <>
-        Tecnologia em <br />
-        <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-300 font-black uppercase">Saneamento.</span>
-      </>
-    ),
-    description: "Operamos com caminhões de sucção a vácuo e hidrojateamento de alta performance. Equipamentos modernos para limpeza de fossas.",
-    primaryBtn: "Solicitar Caminhão",
-    secondaryBtn: "Ver Frota"
-  },
-  {
-    id: 3,
-    image: "/industrial-1.avif",
-    subtitle: "Manutenção Industrial",
-    title: (
-      <>
-        Profissionais <br />
-        <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-indigo-300 font-black uppercase">Capacitados</span>
-      </>
-    ),
-    description: "Equipes certificadas em solda, montagem eletromecânica e manutenção preventiva. Garantia de continuidade operacional.",
-    primaryBtn: "Falar com Engenheiro",
-    secondaryBtn: "Projetos"
-  }
+  // {
+  //   id: 2,
+  //   image: "/caminhao-1.png",
+  //   subtitle: "Frota Própria e Especializada",
+  //   title: (
+  //     <>
+  //       Tecnologia em <br />
+  //       <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-300 font-black uppercase">Saneamento.</span>
+  //     </>
+  //   ),
+  //   description: "Operamos com caminhões de sucção a vácuo e hidrojateamento de alta performance. Equipamentos modernos para limpeza de fossas.",
+  //   primaryBtn: "Solicitar Caminhão",
+  //   secondaryBtn: "Ver Frota"
+  // },
+  // {
+  //   id: 3,
+  //   image: "/industrial-1.avif",
+  //   subtitle: "Manutenção Industrial",
+  //   title: (
+  //     <>
+  //       Profissionais <br />
+  //       <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-indigo-300 font-black uppercase">Capacitados</span>
+  //     </>
+  //   ),
+  //   description: "Equipes certificadas em solda, montagem eletromecânica e manutenção preventiva. Garantia de continuidade operacional.",
+  //   primaryBtn: "Falar com Engenheiro",
+  //   secondaryBtn: "Projetos"
+  // }
 ];
 
 export default function Hero({ scrollToSection }: any) {
@@ -122,8 +122,8 @@ export default function Hero({ scrollToSection }: any) {
               </span>
             </div>
 
-            <div className="min-h-35 sm:min-h-37.5 md:min-h-0">
-              <h1 className="text-[34px] leading-[1.06] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 md:mb-6 drop-shadow-lg">
+            <div className="min-h-35 flex justify-center flex-col sm:min-h-37.5 md:min-h-0">
+              <h1 className="text-4xl! leading-[1.06] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 md:mb-6 drop-shadow-lg">
                 {slides[current].title}
               </h1>
             </div>
