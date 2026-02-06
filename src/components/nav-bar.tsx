@@ -149,7 +149,7 @@ export default function NavBar({ isScrolled, scrollToSection, setIsMobileMenuOpe
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             onClick={() => scrollToSection('início')}
-            className="fixed bottom-8 right-6 md:right-10 z-50 p-4 rounded-full! bg-blue-600! text-white! border-none! outline-none! focus:outline-none! focus:ring-0! shadow-[0_10px_30px_rgba(37,99,235,0.5)]! hover:shadow-[0_10px_40px_rgba(37,99,235,0.7)]! cursor-pointer!"
+            className="fixed bottom-8 right-6 md:right-10 z-60 p-4 rounded-full! bg-blue-600! text-white! border-none! outline-none! focus:outline-none! focus:ring-0! shadow-[0_10px_30px_rgba(37,99,235,0.5)]! hover:shadow-[0_10px_40px_rgba(37,99,235,0.7)]! cursor-pointer!"
             aria-label="Voltar ao topo"
           >
             <ArrowUp size={24} strokeWidth={3} />

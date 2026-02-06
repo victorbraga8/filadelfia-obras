@@ -5,31 +5,33 @@ import { X, ZoomIn, Plus, ArrowRight } from "lucide-react";
 const galleryImages = [
   {
     id: 1,
-    url: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
-    category: "Projetos Estruturais",
+    url: "/caminhao-2.png",
+    category: "Desobstrução de Rede",
     span: "md:col-span-2 md:row-span-2"
   },
   {
     id: 2,
-    url: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop",
-    category: "Solda & Montagem",
+    url: "/caixa-agua.png",
+    category: "Construção Civil",
     span: "md:col-span-1 md:row-span-1"
+
+
   },
   {
     id: 3,
-    url: "https://images.unsplash.com/photo-1581094794329-cd1096d7a43f?q=80&w=800&auto=format&fit=crop",
-    category: "Engenharia Civil",
+    url: "/equipe-1.png",
+    category: "Projetos Estruturais",
     span: "md:col-span-1 md:row-span-1"
   },
   {
     id: 4,
-    url: "https://images.unsplash.com/photo-1590644365607-1c5a38fc43e0?q=80&w=800&auto=format&fit=crop",
+    url: "/eletrica.png",
     category: "Infraestrutura",
     span: "md:col-span-1 md:row-span-1"
   },
   {
     id: 5,
-    url: "https://images.unsplash.com/photo-1535154376363-24151a665974?q=80&w=800&auto=format&fit=crop",
+    url: "/tubulacoes.png",
     category: "Tubulações",
     span: "md:col-span-1 md:row-span-1"
   }
@@ -48,13 +50,13 @@ export default function Gallery() {
               Galeria de Projetos
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
-              Execução e <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Acabamento.</span>
+              Execução <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-cyan-500 font-bold">Eficiente.</span>
             </h2>
           </div>
 
-          <button className="hidden md:flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors group">
+          <button className="hidden md:flex items-center gap-3 px-6! py-3! rounded-xl! bg-gradient-to-r! from-slate-900! to-slate-800! text-white! font-bold! text-sm! uppercase! tracking-wider! transition-all duration-300 border! border-slate-700! hover:border-blue-500! hover:from-blue-900! hover:to-slate-900! group">
             <span>Ver portfólio completo</span>
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={18} className="text-blue-400! group-hover:text-white! group-hover:translate-x-1 transition-all" />
           </button>
         </div>
 
@@ -89,8 +91,8 @@ export default function Gallery() {
         </div>
 
         <div className="mt-8 flex md:hidden justify-center">
-          <button className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">
-            <Plus size={16} /> Ver portfólio completo
+          <button className="flex items-center gap-2 text-sm font-bold  hover:text-blue-600 transition-colors">
+            <Plus size={16} /><span className="text-white!"> Ver portfólio completo</span>
           </button>
         </div>
 
@@ -102,7 +104,7 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-60 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4"
             onClick={() => setSelectedId(null)}
           >
             <button
@@ -126,7 +128,7 @@ export default function Gallery() {
                       alt={item.category}
                       className="w-full h-full object-contain max-h-[85vh]"
                     />
-                    <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                    <div className="absolute bottom-0 left-0 w-full p-6 bg-linear-to-t from-black/90 via-black/50 to-transparent">
                       <p className="text-white font-bold text-xl">{item.category}</p>
                       <p className="text-slate-300 text-sm mt-1">Visualização detalhada do projeto</p>
                     </div>

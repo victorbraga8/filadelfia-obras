@@ -24,14 +24,14 @@ export default function Institucional() {
         ></div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-slate-900/10 to-transparent z-0 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-2/3 bg-linear-to-t from-slate-900/10 to-transparent z-0 pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16">
 
           <div className="lg:w-1/2 order-2 lg:order-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-[2px] bg-blue-600"></div>
+              <div className="w-8 h-0.5 bg-blue-600"></div>
               <span className="text-blue-500 font-bold tracking-widest uppercase text-xs">
                 Sobre a Filadélfia
               </span>
@@ -78,12 +78,12 @@ export default function Institucional() {
                 className="relative z-10 rounded-lg overflow-hidden shadow-2xl border border-slate-800/50"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop"
+                  src="/caminhao-3.png"
                   alt="Industrial Welding"
                   className="w-full h-auto object-cover hover:scale-105 transition-transform duration-1000"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent"></div>
               </motion.div>
 
               <motion.div
@@ -93,7 +93,7 @@ export default function Institucional() {
                 className="absolute -bottom-10 -left-10 w-1/2 rounded-lg overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.6)] border border-slate-800 z-20 hidden md:block"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=400&auto=format&fit=crop"
+                  src="/equipe-1.png"
                   alt="Engenharia Civil"
                   className="w-full h-auto object-cover"
                 />

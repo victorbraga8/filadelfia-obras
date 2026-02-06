@@ -7,7 +7,7 @@ const services = [
     title: "Hidráulica e Saneamento",
     desc: "Infraestrutura completa para redes de água e esgoto. Instalação de tubulações de grande porte e estações de tratamento.",
     icon: Droplets,
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop",
+    image: "/saneamento.avif",
     features: ["Redes de Água", "Estações de Tratamento", "Drenagem"]
   },
   {
@@ -15,7 +15,7 @@ const services = [
     title: "Caldeiraria Industrial",
     desc: "Fabricação e manutenção de estruturas metálicas, tanques e tubulações de alta pressão com soldas especiais.",
     icon: Factory,
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop",
+    image: "/caldeiraria.avif",
     features: ["Tanques Metálicos", "Soldas Especiais", "Tubulações"]
   },
   {
@@ -23,7 +23,7 @@ const services = [
     title: "Manutenção Predial",
     desc: "Revitalização de fachadas, impermeabilização e reformas estruturais em ambientes corporativos e industriais.",
     icon: Wrench,
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop",
+    image: "/predial.avif",
     features: ["Fachadas", "Impermeabilização", "Reformas"]
   },
   {
@@ -31,8 +31,8 @@ const services = [
     title: "Instalações Elétricas",
     desc: "Projetos de alta tensão, subestações e automação industrial focados em eficiência energética e segurança.",
     icon: Zap,
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop",
-    features: ["Alta Tensão", "Subestações", "Automação"]
+    image: "/eletrica.avif",
+    features: ["Alta Tensão", "Subestações", "Manutenção Preventiva"]
   }
 ];
 
@@ -58,7 +58,7 @@ export default function Services() {
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
               Soluções integradas para <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-600">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-800 to-blue-600">
                 desafios complexos.
               </span>
             </h2>
@@ -82,7 +82,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group relative h-[450px] rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-blue-900/20 transition-all duration-500 bg-slate-900"
+                className="group relative h-112.5 rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-blue-900/20 transition-all duration-500 bg-slate-900"
               >
                 <div className="absolute inset-0 w-full h-full">
                   <img
@@ -92,7 +92,7 @@ export default function Services() {
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 <div className="relative z-10 h-full p-6 md:p-8 flex flex-col">
 

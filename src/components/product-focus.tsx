@@ -6,22 +6,22 @@ import { Button } from "./ui/button";
 const fleetImages = [
   {
     id: 0,
-    url: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200&auto=format&fit=crop",
+    url: "/caminhao-2.png",
     alt: "Caminhão Combinado Principal"
   },
   {
     id: 1,
-    url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop",
+    url: "/caminhao-4.png",
     alt: "Detalhe Mecânico"
   },
   {
     id: 2,
-    url: "https://images.unsplash.com/photo-1574359411659-15573a27fd0c?q=80&w=1200&auto=format&fit=crop",
+    url: "/caminhao-1.png",
     alt: "Operação em Campo"
   },
   {
     id: 3,
-    url: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1200&auto=format&fit=crop",
+    url: "/caminhao-5.png",
     alt: "Manutenção Industrial"
   }
 ];
@@ -66,12 +66,12 @@ export default function Fleet() {
               Frota Própria
             </span>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight break-words">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight wrap-break-words">
               Combinado Hidrojato <br />
               <span className="text-slate-400">& Vácuo Industrial.</span>
             </h2>
 
-            <p className="text-slate-600 mb-10 text-base md:text-lg leading-relaxed break-words">
+            <p className="text-slate-600 mb-10 text-base md:text-lg leading-relaxed wrap-break-words">
               Nossa operação conta com caminhões combinados de última geração.
               Um sistema duplo que permite realizar a desobstrução por hidrojateamento e a sucção de resíduos simultaneamente.
             </p>
@@ -122,17 +122,6 @@ export default function Fleet() {
                   />
                 </AnimatePresence>
 
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-t from-black/90 via-black/50 to-transparent p-6 md:p-8 pt-24 pointer-events-none">
-                  <p className="text-white font-bold text-lg md:text-xl tracking-tight wrap-break-word">
-                    {fleetImages[activeImg].alt}
-                  </p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <div className="w-8 h-0.5 bg-blue-500"></div>
-                    <p className="text-blue-400 text-xs uppercase tracking-wider font-bold">
-                      Visualização Técnica
-                    </p>
-                  </div>
-                </div>
               </div>
 
               <div className="w-full md:w-auto flex flex-row md:flex-col gap-3 justify-center md:justify-center py-2 md:py-0 order-2 shrink-0">
