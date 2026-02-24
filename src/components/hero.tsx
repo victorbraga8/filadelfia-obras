@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 const slides = [
   {
     id: 1,
-    image: "/engenharia.avif",
+    image: "/caminhao-2.png",
     subtitle: "Excelência em Infraestrutura",
     title: (
       <>

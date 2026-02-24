@@ -29,10 +29,10 @@ const services = [
   {
     id: "04",
     title: "Instalações Elétricas",
-    desc: "Projetos de alta tensão, subestações e automação industrial focados em eficiência energética e segurança.",
+    desc: "Projetos de alta tensão, automação industrial focados em eficiência energética e segurança.",
     icon: Zap,
     image: "/eletrica.avif",
-    features: ["Alta Tensão", "Subestações", "Manutenção Preventiva"]
+    features: ["Alta Tensão", "Manutenção Preventiva"]
   }
 ];
 

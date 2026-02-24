@@ -45,7 +45,7 @@ export default function NavBar({ isScrolled, scrollToSection, setIsMobileMenuOpe
             <img
               src="/logo.webp"
               alt="Filadélfia Obras"
-              className="h-16 md:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-lg"
+              className="h-24 md:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-lg"
             />
           </div>
 
