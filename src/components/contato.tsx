@@ -34,7 +34,7 @@ export default function Contato() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Base Operacional</p>
-                    <p className="font-medium text-base md:text-lg break-words">Maricá, Rio de Janeiro</p>
+                    <p className="font-medium text-base md:text-lg break-words">Rio de Janeiro</p>
                   </div>
                 </div>
 

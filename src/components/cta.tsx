@@ -3,12 +3,12 @@ import { Users, Building2, CheckCircle2, Clock } from "lucide-react";
 const stats = [
   {
     value: "+10",
-    label: "Anos de Mercado",
+    label: "Anos de Atuação",
     desc: "Experiência sólida",
     icon: <Clock className="w-5 h-5 md:w-6 md:h-6" />
   },
   {
-    value: "+500",
+    value: "+1000",
     label: "Obras Entregues",
     desc: "Em todo estado do RJ",
     icon: <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" />
@@ -22,7 +22,7 @@ const stats = [
   {
     value: "+50",
     label: "Colaboradores",
-    desc: "Técnicos certificados",
+    desc: "Técnicos certificados com NR's",
     icon: <Users className="w-5 h-5 md:w-6 md:h-6" />
   }
 ];

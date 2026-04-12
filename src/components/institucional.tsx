@@ -43,7 +43,7 @@ export default function Institucional() {
             </h2>
 
             <p className="text-slate-400 mb-8 text-lg leading-relaxed font-light">
-              Fundada em 2014 em Maricá, nascemos com a missão de elevar o padrão da engenharia industrial no Rio de Janeiro.
+              Fundada em 2014, nascemos com a missão de elevar o padrão da engenharia industrial no Rio de Janeiro.
               Não entregamos apenas obras, entregamos <strong className="text-white font-semibold">segurança operacional</strong>.
             </p>
 

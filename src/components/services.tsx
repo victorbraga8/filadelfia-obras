@@ -8,7 +8,7 @@ const services = [
     desc: "Infraestrutura completa para redes de água e esgoto. Instalação de tubulações de grande porte e estações de tratamento.",
     icon: Droplets,
     image: "/saneamento.avif",
-    features: ["Redes de Água", "Estações de Tratamento", "Drenagem"]
+    features: ["Redes de Água", "Estações de Tratamento", "Drenagem", "Ligação de Água e Esgoto"]
   },
   {
     id: "02",
@@ -20,7 +20,7 @@ const services = [
   },
   {
     id: "03",
-    title: "Manutenção Predial",
+    title: "Manutenção",
     desc: "Revitalização de fachadas, impermeabilização e reformas estruturais em ambientes corporativos e industriais.",
     icon: Wrench,
     image: "/predial.avif",
@@ -32,7 +32,7 @@ const services = [
     desc: "Projetos de alta tensão, automação industrial focados em eficiência energética e segurança.",
     icon: Zap,
     image: "/eletrica.avif",
-    features: ["Alta Tensão", "Manutenção Preventiva"]
+    features: ["Automação", "Manutenção Preventiva", "Manutenção de Bombas"]
   }
 ];
 
