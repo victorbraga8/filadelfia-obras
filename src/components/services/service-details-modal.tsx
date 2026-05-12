@@ -1,16 +1,19 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, CheckCircle2, X } from 'lucide-react';
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, CheckCircle2, X } from "lucide-react";
 
-import { Button } from '../ui/button';
-import type { ServiceItem } from './services-content';
+import { Button } from "../ui/button";
+import type { ServiceItem } from "./services-content";
 
 type ServiceDetailsModalProps = {
   service: ServiceItem;
   onClose: () => void;
 };
 
-export function ServiceDetailsModal({ service, onClose }: ServiceDetailsModalProps) {
+export function ServiceDetailsModal({
+  service,
+  onClose,
+}: ServiceDetailsModalProps) {
   const Icon = service.icon;
 
   useEffect(() => {
@@ -21,21 +24,22 @@ export function ServiceDetailsModal({ service, onClose }: ServiceDetailsModalPro
     const previousBodyWidth = document.body.style.width;
     const previousHtmlOverflow = document.documentElement.style.overflow;
     const previousBodyScrollLocked = document.body.dataset.scrollLocked;
-    const previousHtmlScrollLocked = document.documentElement.dataset.scrollLocked;
+    const previousHtmlScrollLocked =
+      document.documentElement.dataset.scrollLocked;
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         onClose();
       }
     };
 
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    document.documentElement.style.overflow = 'hidden';
-    document.body.dataset.scrollLocked = 'true';
-    document.documentElement.dataset.scrollLocked = 'true';
-    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.width = "100%";
+    document.documentElement.style.overflow = "hidden";
+    document.body.dataset.scrollLocked = "true";
+    document.documentElement.dataset.scrollLocked = "true";
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = previousBodyOverflow;
@@ -49,11 +53,12 @@ export function ServiceDetailsModal({ service, onClose }: ServiceDetailsModalPro
         delete document.body.dataset.scrollLocked;
       }
       if (previousHtmlScrollLocked) {
-        document.documentElement.dataset.scrollLocked = previousHtmlScrollLocked;
+        document.documentElement.dataset.scrollLocked =
+          previousHtmlScrollLocked;
       } else {
         delete document.documentElement.dataset.scrollLocked;
       }
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
       window.scrollTo(0, scrollY);
     };
   }, [onClose]);
@@ -70,7 +75,7 @@ export function ServiceDetailsModal({ service, onClose }: ServiceDetailsModalPro
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 24, scale: 0.98 }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
         className="relative w-full max-w-5xl overflow-hidden rounded-[28px] border border-white/10 bg-slate-950 text-white shadow-2xl"
         onClick={(event) => event.stopPropagation()}
         role="dialog"
@@ -102,7 +107,9 @@ export function ServiceDetailsModal({ service, onClose }: ServiceDetailsModalPro
               </div>
 
               <div className="max-w-2xl">
-                <span className="mb-3 block font-mono text-sm text-white/45">{service.id}</span>
+                <span className="mb-3 block font-mono text-sm text-white/45">
+                  {service.id}
+                </span>
                 <h3
                   id={`service-modal-title-${service.id}`}
                   className="text-3xl leading-tight font-bold md:text-5xl"
@@ -122,7 +129,9 @@ export function ServiceDetailsModal({ service, onClose }: ServiceDetailsModalPro
                   >
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-300" />
-                      <p className="text-sm leading-6 text-slate-100">{highlight}</p>
+                      <p className="text-sm leading-6 text-slate-100">
+                        {highlight}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -130,35 +139,33 @@ export function ServiceDetailsModal({ service, onClose }: ServiceDetailsModalPro
             </div>
           </div>
 
-          <div className="flex flex-col bg-linear-to-b from-blue-950 to-slate-950">
-            <div className="border-b border-white/10 p-8">
-              <span className="text-xs font-bold tracking-[0.24em] text-blue-300 uppercase">
-                Galeria do serviço
+          <div className="grid bg-linear-to-b from-blue-950 to-slate-950 lg:grid-rows-[auto_1fr_auto]">
+            <div className="flex min-h-[124px] items-end border-b border-white/10 px-8 pb-8 pt-12 pr-24">
+              <span className="block max-w-[240px] text-xs font-bold leading-6 tracking-[0.24em] text-blue-300 uppercase">
+                {service.contactEyebrow}
               </span>
-              <p className="mt-3 text-sm leading-6 text-slate-300">
-                Referências visuais da frente operacional para apoiar entendimento do escopo,
-                padrão de execução e capacidade de atendimento.
-              </p>
             </div>
 
             <div className="p-8">
-              <div className="flex flex-wrap gap-2">
+              <div className="grid h-full content-start auto-rows-fr gap-4">
                 {service.features.map((feature) => (
-                  <span
+                  <div
                     key={feature}
-                    className="rounded-full border border-blue-300/25 bg-blue-500/10 px-3 py-1.5 text-xs font-bold tracking-[0.2em] text-blue-100 uppercase"
+                    className="flex min-h-[50px] items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
                   >
-                    {feature}
-                  </span>
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-300" />
+                    <p className="text-sm leading-6 text-slate-100">
+                      {feature}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-auto border-t border-white/10 p-8">
+            <div className="border-t border-white/10 p-8">
               <div className="rounded-2xl border border-blue-400/20 bg-slate-950/45 p-5 backdrop-blur-md">
                 <p className="text-sm leading-6 text-slate-200">
-                  Precisa de uma frente semelhante, adequação técnica ou visita para levantamento?
-                  Nossa equipe comercial pode aprofundar o escopo e montar a proposta ideal.
+                  {service.contactCardCopy}
                 </p>
                 <Button
                   asChild

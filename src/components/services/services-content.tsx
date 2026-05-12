@@ -1,10 +1,12 @@
-import { Droplets, Factory, Wrench, Zap, type LucideIcon } from 'lucide-react';
+import { Droplets, Factory, Wrench, Zap, type LucideIcon } from "lucide-react";
 
 export type ServiceItem = {
   id: string;
   title: string;
   description: string;
   detailedDescription: string;
+  contactEyebrow: string;
+  contactCardCopy: string;
   icon: LucideIcon;
   image: string;
   features: string[];
@@ -13,75 +15,93 @@ export type ServiceItem = {
 
 export const serviceItems: ServiceItem[] = [
   {
-    id: '01',
-    title: 'Hidráulica e Saneamento',
+    id: "01",
+    title: "Hidráulica e Saneamento",
     description:
-      'Execução e manutenção de redes de água e esgoto, hidrômetros, drenagem e desobstruções com resposta operacional em campo.',
+      "Instalação, manutenção e desobstrução rápida de redes de água, esgoto e drenagem.",
     detailedDescription:
-      'Atuamos em infraestrutura hidráulica e saneamento com equipes preparadas para instalações, adequações e intervenções corretivas. O escopo contempla instalações de hidrômetros, ligações de água e esgoto, drenagem, desobstrução manual e desobstrução com equipamento para restaurar o fluxo com segurança, produtividade e menor impacto na operação do cliente.',
+      "Através da nossa atuação em infraestrutura hidráulica e saneamento, cuidamos da sua rede de água, esgoto e drenagem para garantir que sua operação não pare. Usamos tecnologia avançada para desobstruções e reparos precisos, com o mínimo de impacto na sua rotina.",
+    contactEyebrow: "Soluções Eficientes e Modernas",
+    contactCardCopy:
+      "Fale com nossos especialistas e agende uma vistoria para definirmos os próximos passos.",
     icon: Droplets,
-    image: '/saneamento.avif',
-    features: ['Redes de Água', 'Hidrômetros', 'Drenagem', 'Desobstrução de Redes'],
-    highlights: [
-      'Instalação e substituição de hidrômetros com padronização de campo.',
-      'Desobstrução manual para intervenções pontuais e áreas de difícil acesso.',
-      'Desobstrução com equipamento para ganho de produtividade em trechos críticos.',
-      'Frentes de manutenção para redes de água, esgoto e drenagem urbana.',
-    ],
-  },
-  {
-    id: '02',
-    title: 'Caldeiraria Industrial',
-    description:
-      'Fabricação, montagem e manutenção de estruturas metálicas, tanques e tubulações industriais com controle técnico de soldagem.',
-    detailedDescription:
-      'Executamos soluções de caldeiraria para ambientes industriais que exigem robustez mecânica, precisão dimensional e confiabilidade operacional. Desenvolvemos estruturas metálicas, tanques e tubulações com foco em durabilidade, adequação ao processo e integração com a rotina de manutenção do cliente.',
-    icon: Factory,
-    image: '/caldeiraria.avif',
-    features: ['Tanques Metálicos', 'Soldas Especiais', 'Tubulações'],
-    highlights: [
-      'Montagem e reparo de estruturas metálicas para operação contínua.',
-      'Execução de soldas especiais com atenção à integridade do conjunto.',
-      'Adequação de tubulações industriais para ampliar segurança e desempenho.',
-      'Atuação alinhada a cronogramas de parada e manutenção programada.',
-    ],
-  },
-  {
-    id: '03',
-    title: 'Manutenção',
-    description:
-      'Intervenções civis e estruturais para manter ativos em operação, com pequenas reformas, concreto armado e recomposição urbana.',
-    detailedDescription:
-      'Nossa frente de manutenção reúne equipes multidisciplinares para executar pequenas reformas de obras civis, serviços em estrutura de concreto armado, recomposição asfáltica e nivelamento ou substituição de tampão e capoeira. O objetivo é recuperar áreas degradadas, corrigir patologias e devolver funcionalidade ao espaço com padrão técnico consistente.',
-    icon: Wrench,
-    image: '/predial.avif',
+    image: "/saneamento.avif",
     features: [
-      'Pequenas Reformas',
-      'Concreto Armado',
-      'Impermeabilização'
+      "Redes de Água",
+      "Hidrômetros",
+      "Drenagem",
+      "Desobstrução de Redes",
     ],
     highlights: [
-      'Pequenas reformas civis com foco em correção rápida e acabamento funcional.',
-      'Recuperação e reforço em estruturas de concreto armado.',
-      'Recomposição asfáltica para restabelecer segurança e trafegabilidade.',
-      'Nivelamento e substituição de tampão e capoeira em áreas técnicas e urbanas.',
+      "Instalação e troca padronizada de hidrômetros.",
+      "Desobstrução manual para áreas de difícil acesso.",
+      "Desobstrução mecanizada para máxima eficiência e rapidez.",
+      "Soluções para redes de água, esgoto e drenagem urbana.",
     ],
   },
   {
-    id: '04',
-    title: 'Instalações Elétricas',
+    id: "02",
+    title: "Caldeiraria Industrial",
     description:
-      'Infraestrutura elétrica e automação aplicada com manutenção preditiva, bombas e painéis para garantir continuidade operacional.',
+      "Soluções sob medida em estruturas metálicas, tanques e tubulações com soldagem de alta precisão.",
     detailedDescription:
-      'Desenvolvemos soluções em instalações elétricas para operações que exigem disponibilidade, diagnóstico técnico e resposta eficiente. O escopo inclui automação, manutenção preditiva, manutenção de bombas e atuação em painéis elétricos, sempre com foco em confiabilidade, segurança e redução de paradas não planejadas.',
-    icon: Zap,
-    image: '/eletrica.avif',
-    features: ['Automação', 'Manutenção Preditiva', 'Bombas Elétricas', 'Painéis Elétricos'],
+      "Fabricação, montagem e manutenção de estruturas metálicas feitas para durar. Entregamos soluções em caldeiraria com precisão dimensional e alta resistência, adaptando nossos serviços ao seu cronograma para garantir a continuidade da sua produção.",
+    contactEyebrow: "Robustez e precisão industrial",
+    contactCardCopy:
+      "Envie seu projeto ou necessidade e receba nossa análise e plano de execução personalizado.",
+    icon: Factory,
+    image: "/caldeiraria.avif",
+    features: ["Tanques Metálicos", "Soldas Especiais", "Tubulações"],
     highlights: [
-      'Manutenção preditiva para antecipar falhas e preservar ativos críticos.',
-      'Intervenções em bombas e painéis elétricos com análise técnica em campo.',
-      'Apoio à automação para ganho de eficiência e controle operacional.',
-      'Execução orientada por segurança, continuidade e rastreabilidade de serviço.',
+      "Montagem e reparo rápido de estruturas metálicas.",
+      "Soldagem especial com foco em segurança e integridade.",
+      "Adequação de tubulações para melhoria de desempenho.",
+      "Serviços perfeitamente alinhados ao seu cronograma.",
+    ],
+  },
+  {
+    id: "03",
+    title: "Manutenção",
+    description:
+      "Pequenas reformas, recuperação estrutural e manutenção civil para manter seus espaços seguros.",
+    detailedDescription:
+      "Equipe pronta para resolver problemas estruturais com agilidade. Realizamos desde pequenas reformas até a recuperação de concreto armado e pavimentos. Nosso foco é devolver a funcionalidade e a segurança ao seu ambiente de forma prática e definitiva.",
+    contactEyebrow: "Manutenção civil ágil e eficiente",
+    contactCardCopy:
+      "Solicite um orçamento rápido e saiba como nossa equipe pode ajudar na sua obra.",
+    icon: Wrench,
+    image: "/predial.avif",
+    features: ["Pequenas Reformas", "Concreto Armado", "Impermeabilização"],
+    highlights: [
+      "Reformas civis rápidas com alto controle de qualidade.",
+      "Recuperação e reforço em estruturas de concreto armado.",
+      "Recomposição asfáltica e de pavimentos para garantir segurança.",
+      "Nivelamento e troca de tampões em vias urbanas e áreas técnicas.",
+    ],
+  },
+  {
+    id: "04",
+    title: "Instalações Elétricas",
+    description:
+      "Manutenção preditiva, automação e infraestrutura elétrica focada em evitar paradas.",
+    detailedDescription:
+      "Garantimos que a energia não seja um problema para a sua empresa. Atuamos com manutenção preditiva, reparo de bombas, automação e montagem de painéis elétricos. Trabalhamos para aumentar a vida útil dos seus equipamentos e eliminar paradas inesperadas.",
+    contactEyebrow: "Energia segura e sem interrupções",
+    contactCardCopy:
+      "Fale conosco agora e garanta a estabilidade e segurança da sua operação elétrica.",
+    icon: Zap,
+    image: "/eletrica.avif",
+    features: [
+      "Automação",
+      "Manutenção Preditiva",
+      "Bombas Elétricas",
+      "Painéis Elétricos",
+    ],
+    highlights: [
+      "Manutenção preditiva para evitar falhas e problemas.",
+      "Diagnóstico e reparo preciso em painéis e bombas elétricas.",
+      "Automação inteligente para maior controle e eficiência da operação.",
+      "Serviços executados com foco absoluto em segurança e continuidade.",
     ],
   },
 ];
