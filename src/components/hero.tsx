@@ -1,54 +1,36 @@
-import { useState, useEffect, useCallback } from "react";
-import { ChevronRight, ChevronLeft } from "lucide-react";
-import { motion, AnimatePresence, type PanInfo } from "framer-motion";
-import { Button } from "./ui/button";
+import { useState, useEffect, useCallback } from 'react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { motion, AnimatePresence, type PanInfo } from 'framer-motion';
+
+import { Button } from './ui/button';
+import type { ScrollToSection } from '../lib/types/navigation';
 
 const slides = [
   {
     id: 1,
-    image: "/caminhao-2.png",
-    subtitle: "Excelência em Infraestrutura",
+    image: '/caminhao-2.png',
+    subtitle: 'Excelência em Infraestrutura',
     title: (
       <>
         Credibilidade <br />
-        e <span className="text-transparent font-black bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300 uppercase">Segurança.</span>
+        e{' '}
+        <span className="bg-linear-to-r from-blue-400 to-cyan-300 bg-clip-text font-black text-transparent uppercase">
+          Segurança.
+        </span>
       </>
     ),
-    description: "Especialistas em hidráulica, caldeiraria e serviços urbanos.\nA união perfeita entre força bruta e precisão técnica.",
-    primaryBtn: "Nossos Serviços",
-    secondaryBtn: "A Empresa"
+    description:
+      'Especialistas em hidráulica, caldeiraria e serviços urbanos.\nA união perfeita entre força bruta e precisão técnica.',
+    primaryBtn: 'Nossos Serviços',
+    secondaryBtn: 'A Empresa',
   },
-  // {
-  //   id: 2,
-  //   image: "/caminhao-1.png",
-  //   subtitle: "Frota Própria e Especializada",
-  //   title: (
-  //     <>
-  //       Tecnologia em <br />
-  //       <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-300 font-black uppercase">Saneamento.</span>
-  //     </>
-  //   ),
-  //   description: "Operamos com caminhões de sucção a vácuo e hidrojateamento de alta performance. Equipamentos modernos para limpeza de fossas.",
-  //   primaryBtn: "Solicitar Caminhão",
-  //   secondaryBtn: "Ver Frota"
-  // },
-  // {
-  //   id: 3,
-  //   image: "/industrial-1.avif",
-  //   subtitle: "Manutenção Industrial",
-  //   title: (
-  //     <>
-  //       Profissionais <br />
-  //       <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-indigo-300 font-black uppercase">Capacitados</span>
-  //     </>
-  //   ),
-  //   description: "Equipes certificadas em solda, montagem eletromecânica e manutenção preventiva. Garantia de continuidade operacional.",
-  //   primaryBtn: "Falar com Engenheiro",
-  //   secondaryBtn: "Projetos"
-  // }
 ];
 
-export default function Hero({ scrollToSection }: any) {
+type HeroProps = {
+  scrollToSection: ScrollToSection;
+};
+
+export default function Hero({ scrollToSection }: HeroProps) {
   const [current, setCurrent] = useState(0);
 
   const nextSlide = useCallback(() => {
@@ -61,7 +43,10 @@ export default function Hero({ scrollToSection }: any) {
 
   const goToSlide = (index: number) => setCurrent(index);
 
-  const handleDragEnd = (_: any, info: PanInfo) => {
+  const handleDragEnd = (
+    _event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     if (info.offset.x > 50) {
       prevSlide();
     } else if (info.offset.x < -50) {
@@ -73,13 +58,14 @@ export default function Hero({ scrollToSection }: any) {
     const timer = setInterval(() => {
       nextSlide();
     }, 10000);
+
     return () => clearInterval(timer);
   }, [nextSlide]);
 
   return (
     <section
       id="início"
-      className="relative h-dvh w-screen max-w-none min-w-screen flex items-center overflow-hidden bg-slate-900"
+      className="relative flex h-dvh min-w-screen w-screen max-w-none items-center overflow-hidden bg-slate-900"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -93,15 +79,15 @@ export default function Hero({ scrollToSection }: any) {
           <img
             src={slides[current].image}
             alt="Hero Background"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 z-10 bg-linear-to-r from-slate-950 via-slate-900/80 to-slate-900/20"></div>
-      <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950 via-transparent to-transparent opacity-90 md:hidden"></div>
+      <div className="absolute inset-0 z-10 bg-linear-to-r from-slate-950 via-slate-900/80 to-slate-900/20" />
+      <div className="absolute inset-0 z-10 opacity-90 bg-linear-to-t from-slate-950 via-transparent to-transparent md:hidden" />
 
-      <div className="container mx-auto px-6 relative z-20 h-full flex flex-col justify-center pt-12 md:pt-10">
+      <div className="container relative z-20 mx-auto flex h-full flex-col justify-center px-6 pt-12 md:pt-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={slides[current].id}
@@ -113,38 +99,38 @@ export default function Hero({ scrollToSection }: any) {
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.05}
             onDragEnd={handleDragEnd}
-            className="max-w-4xl cursor-grab active:cursor-grabbing pb-32 md:pb-0"
+            className="max-w-4xl cursor-grab pb-32 active:cursor-grabbing md:pb-0"
           >
-            <div className="flex items-center gap-4 mb-4 md:mb-6 min-h-7">
-              <div className="h-1 w-8 md:w-12 bg-blue-500"></div>
-              <span className="text-blue-400 font-bold tracking-widest uppercase text-[11px] leading-none md:text-sm">
+            <div className="mb-4 flex min-h-7 items-center gap-4 md:mb-6">
+              <div className="h-1 w-8 bg-blue-500 md:w-12" />
+              <span className="text-[11px] leading-none font-bold tracking-widest text-blue-400 uppercase md:text-sm">
                 {slides[current].subtitle}
               </span>
             </div>
 
-            <div className="min-h-35 flex justify-center flex-col sm:min-h-37.5 md:min-h-0">
-              <h1 className="text-4xl! leading-[1.06] sm:text-5xl md:text-6xl! lg:text-7xl! font-bold text-white mb-5 md:mb-6 drop-shadow-lg">
+            <div className="flex min-h-35 flex-col justify-center sm:min-h-37.5 md:min-h-0">
+              <h1 className="mb-5 text-4xl! leading-[1.06] font-bold text-white drop-shadow-lg sm:text-5xl md:text-6xl! lg:text-7xl! md:mb-6">
                 {slides[current].title}
               </h1>
             </div>
 
-            <p className="text-[13.5px] leading-relaxed sm:text-base md:text-xl text-gray-300 mb-7 md:mb-10 max-w-xl md:max-w-2xl border-l-4 border-blue-600 pl-4 md:pl-6 bg-slate-900/30 backdrop-blur-sm py-2.5 pr-4 rounded-r-lg min-h-23 sm:min-h-22 md:min-h-0 whitespace-pre-line">
+            <p className="mb-7 max-w-xl min-h-23 rounded-r-lg border-l-4 border-blue-600 bg-slate-900/30 py-2.5 pr-4 pl-4 text-[13.5px] leading-relaxed whitespace-pre-line text-gray-300 backdrop-blur-sm sm:min-h-22 sm:text-base md:mb-10 md:max-w-2xl md:min-h-0 md:pl-6 md:text-xl">
               {slides[current].description}
             </p>
 
-            <div className="flex flex-row gap-3 w-full sm:w-auto">
+            <div className="flex w-full flex-row gap-3 sm:w-auto">
               <Button
-                onClick={() => scrollToSection("serviços")}
-                className="flex-1 sm:flex-none h-11! md:h-12! px-4! md:px-4! bg-blue-600! hover:bg-blue-500! text-white! rounded-lg! font-bold! text-[12px] sm:text-xs md:text-base border-0! outline-none! ring-0! focus:ring-0! shadow-[0_0_20px_rgba(37,99,235,0.3)]! transition-all active:scale-95 flex items-center justify-center gap-2"
+                onClick={() => scrollToSection('serviços')}
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg! bg-blue-600! px-4! text-[12px] font-bold text-white! shadow-[0_0_20px_rgba(37,99,235,0.3)]! transition-all ring-0! border-0! outline-none! hover:bg-blue-500! focus:ring-0! active:scale-95 sm:flex-none sm:text-xs md:h-12! md:px-4! md:text-base h-11!"
               >
                 {slides[current].primaryBtn}
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
 
               <Button
                 variant="outline"
-                onClick={() => scrollToSection("contato")}
-                className="flex-1 sm:flex-none h-11! md:h-12! px-4! md:px-4! bg-white/5! backdrop-blur-md! border! border-white/20! hover:bg-white/10! hover:border-white/40! text-white! rounded-lg! font-bold! text-[12px] sm:text-xs md:text-base transition-all active:scale-95 hover:text-white! outline-none! focus:ring-0!"
+                onClick={() => scrollToSection('contato')}
+                className="flex flex-1 rounded-lg! bg-white/5! px-4! text-[12px] font-bold text-white! transition-all border! border-white/20! outline-none! backdrop-blur-md! hover:bg-white/10! hover:text-white! hover:border-white/40! focus:ring-0! active:scale-95 sm:flex-none sm:text-xs md:h-12! md:px-4! md:text-base h-11!"
               >
                 {slides[current].secondaryBtn}
               </Button>
@@ -153,21 +139,22 @@ export default function Hero({ scrollToSection }: any) {
         </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full z-30 pb-8 pt-12 bg-linear-to-t from-slate-950 via-slate-950/90 to-transparent">
-        <div className="container mx-auto px-6 flex flex-col items-center gap-5">
+      <div className="absolute bottom-0 left-0 z-30 w-full bg-linear-to-t from-slate-950 via-slate-950/90 to-transparent pt-12 pb-8">
+        <div className="container mx-auto flex flex-col items-center gap-5 px-6">
           <div className="flex items-center gap-3">
             {slides.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => goToSlide(idx)}
-                className="relative group p-2! outline-none! border-none! bg-transparent! focus:outline-none! focus:ring-0!"
+                className="group bg-transparent! p-2! outline-none! border-none! focus:outline-none! focus:ring-0!"
                 aria-label={`Ir para slide ${idx + 1}`}
               >
                 <div
-                  className={`transition-all duration-500 rounded-full! ${current === idx
-                    ? "w-8! h-1.5! bg-blue-500! shadow-[0_0_10px_rgba(59,130,246,0.8)]!"
-                    : "w-2! h-2! bg-white/30! group-hover:bg-white/80!"
-                    }`}
+                  className={`rounded-full! transition-all duration-500 ${
+                    current === idx
+                      ? 'h-1.5! w-8! bg-blue-500! shadow-[0_0_10px_rgba(59,130,246,0.8)]!'
+                      : 'h-2! w-2! bg-white/30! group-hover:bg-white/80!'
+                  }`}
                 />
               </button>
             ))}
@@ -178,7 +165,7 @@ export default function Hero({ scrollToSection }: any) {
               variant="ghost"
               size="icon"
               onClick={prevSlide}
-              className="rounded-full! w-12! h-12! p-0! border! border-white/20! bg-white/5! backdrop-blur-md text-white! hover:bg-white/20! hover:border-white/40! transition-all duration-300 active:scale-95 shadow-lg! shadow-black/20! outline-none! focus:ring-0!"
+              className="h-12! w-12! rounded-full! bg-white/5! p-0! text-white! shadow-lg! shadow-black/20! transition-all duration-300 border! border-white/20! outline-none! backdrop-blur-md hover:bg-white/20! hover:border-white/40! focus:ring-0! active:scale-95"
             >
               <ChevronLeft size={24} />
             </Button>
@@ -187,7 +174,7 @@ export default function Hero({ scrollToSection }: any) {
               variant="ghost"
               size="icon"
               onClick={nextSlide}
-              className="rounded-full! w-12! h-12! p-0! border! border-white/20! bg-white/5! backdrop-blur-md text-white! hover:bg-white/20! hover:border-white/40! transition-all duration-300 active:scale-95 shadow-lg! shadow-black/20! outline-none! focus:ring-0!"
+              className="h-12! w-12! rounded-full! bg-white/5! p-0! text-white! shadow-lg! shadow-black/20! transition-all duration-300 border! border-white/20! outline-none! backdrop-blur-md hover:bg-white/20! hover:border-white/40! focus:ring-0! active:scale-95"
             >
               <ChevronRight size={24} />
             </Button>
