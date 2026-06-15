@@ -77,7 +77,7 @@ export default function Contato() {
                 </a>
               </div>
             </div>
-            <div className="relative z-10 w-full h-40 md:h-48 rounded-xl overflow-hidden border border-slate-700 shadow-inner shrink-0 bg-slate-800">
+            {/* <div className="relative z-10 w-full h-40 md:h-48 rounded-xl overflow-hidden border border-slate-700 shadow-inner shrink-0 bg-slate-800">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117506.07921609655!2d-42.89063226295714!3d-22.9200424694924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9986b6a48f700f%3A0x6334641505306660!2sMaric%C3%A1%2C%20RJ!5e0!3m2!1spt-BR!2sbr!4v1707140000000!5m2!1spt-BR!2sbr"
                 width="100%"
@@ -88,7 +88,7 @@ export default function Contato() {
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
               ></iframe>
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:w-7/12 p-8 md:p-12 lg:p-14 bg-white">
