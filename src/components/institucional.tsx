@@ -85,7 +85,7 @@ export default function Institucional() {
 
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent"></div>
               </motion.div>
-
+              {/* 
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -97,7 +97,7 @@ export default function Institucional() {
                   alt="Engenharia Civil"
                   className="w-full h-auto object-cover"
                 />
-              </motion.div>
+              </motion.div> */}
             </div>
           </div>
 

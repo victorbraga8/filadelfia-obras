@@ -84,7 +84,7 @@ export function ServiceDetailsModal({
       >
         <button
           type="button"
-          className="absolute top-5 right-5 z-20 rounded-full border border-white/10 bg-white/10 p-2 text-white/70 transition-colors hover:text-white"
+          className="absolute top-5 right-5 z-20 rounded-full border border-white/10 bg-blue-600! p-2 text-white/70 transition-colors hover:text-white"
           onClick={onClose}
           aria-label={`Fechar detalhes de ${service.title}`}
         >
