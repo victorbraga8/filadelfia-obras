@@ -137,8 +137,17 @@ export function ServiceDetailsModal({
                 ))}
               </div>
               <div className="flex items-center justify-center w-full">
-                <Button className="bg-blue-600! text-white hover:bg-blue-500! transition-colors! rounded-xl!">
-                  Catálogo de Serviços
+                <Button
+                  asChild
+                  className="rounded-xl! bg-blue-600! text-white transition-colors! hover:bg-blue-500!"
+                >
+                  <a
+                    href="/Filadelfia_Apresentacao.pptx"
+                    download
+                    className="text-white"
+                  >
+                    Catálogo de Serviços
+                  </a>
                 </Button>
               </div>
             </div>
