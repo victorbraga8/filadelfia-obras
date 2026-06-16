@@ -139,12 +139,12 @@ export function ServiceDetailsModal({
               <div className="flex items-center justify-center w-full">
                 <Button
                   asChild
-                  className="rounded-xl! bg-blue-600! text-white transition-colors! hover:bg-blue-500!"
+                  className="rounded-xl! bg-blue-600! text-white! transition-colors! hover:bg-blue-500!"
                 >
                   <a
                     href="/Filadelfia_Apresentacao.pptx"
                     download
-                    className="text-white"
+                    className="text-white!"
                   >
                     Catálogo de Serviços
                   </a>
