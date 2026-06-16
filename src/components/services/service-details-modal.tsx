@@ -136,6 +136,11 @@ export function ServiceDetailsModal({
                   </div>
                 ))}
               </div>
+              <div className="flex items-center justify-center w-full">
+                <Button className="bg-blue-600! text-white hover:bg-blue-500! transition-colors! rounded-xl!">
+                  Catálogo de Serviços
+                </Button>
+              </div>
             </div>
           </div>
 
