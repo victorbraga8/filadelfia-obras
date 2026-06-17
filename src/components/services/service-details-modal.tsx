@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, X } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 import { Button } from "../ui/button";
 import type { ServiceItem } from "./services-content";
