@@ -12,7 +12,7 @@ const galleryImages = [
   {
     id: 2,
     url: "/caixa-sf.jpeg",
-    category: "Tubulações",
+    category: "Caldeiraria",
     span: "md:col-span-1 md:row-span-1"
   },
   {

@@ -88,7 +88,8 @@ export function ServiceDetailsModal({
           onClick={onClose}
           aria-label={`Fechar detalhes de ${service.title}`}
         >
-          <X className="h-5 w-5" />
+          Voltar
+          {/* <X className="h-5 w-5" /> */}
         </button>
 
         <div className="grid max-h-[90vh] grid-cols-1 overflow-y-auto lg:grid-cols-[1.2fr_0.8fr]">
