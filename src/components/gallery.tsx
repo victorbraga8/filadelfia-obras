@@ -11,28 +11,26 @@ const galleryImages = [
   },
   {
     id: 2,
-    url: "/caixa-agua.png",
-    category: "Construção Civil",
+    url: "/caixa-sf.jpeg",
+    category: "Tubulações",
     span: "md:col-span-1 md:row-span-1"
-
-
   },
   {
     id: 3,
-    url: "/equipe-1.png",
-    category: "Projetos Estruturais",
+    url: "/eletrica-novo.jpg",
+    category: "Elétrica",
     span: "md:col-span-1 md:row-span-1"
   },
   {
     id: 4,
-    url: "/eletrica.png",
-    category: "Infraestrutura",
+    url: "/Vacall.jpg",
+    category: "Vacall",
     span: "md:col-span-1 md:row-span-1"
   },
   {
     id: 5,
     url: "/tubulacoes.png",
-    category: "Tubulações",
+    category: "Caldeiraria",
     span: "md:col-span-1 md:row-span-1"
   }
 ];
