@@ -1,5 +1,13 @@
 import { Instagram, Mail, MapPin, Phone, MessageCircle, Send, User, Building, FileText } from "lucide-react";
 
+import {
+  CONTACT_EMAIL_ADDRESS,
+  CONTACT_EMAIL_HREF,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+  CONTACT_WHATSAPP_HREF,
+} from "@/lib/contact";
+
 export default function Contato() {
   return (
     <section id="contato" className="py-20 md:py-24 bg-slate-50 relative overflow-hidden">
@@ -44,7 +52,12 @@ export default function Contato() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Telefone / Comercial</p>
-                    <p className="font-medium text-base md:text-lg break-words">(21) 9999-9999</p>
+                    <a
+                      href={CONTACT_PHONE_HREF}
+                      className="font-medium text-base md:text-lg break-words !text-white transition-colors hover:!text-white"
+                    >
+                      {CONTACT_PHONE_DISPLAY}
+                    </a>
                   </div>
                 </div>
 
@@ -54,15 +67,20 @@ export default function Contato() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Email Corporativo</p>
-                    <p className="font-medium text-base md:text-lg break-all md:break-words leading-tight">
-                      contato@filadelfiaobras.com.br
-                    </p>
+                    <a
+                      href={CONTACT_EMAIL_HREF}
+                      className="font-medium text-base md:text-lg break-all leading-tight !text-white transition-colors hover:!text-white md:break-words"
+                    >
+                      {CONTACT_EMAIL_ADDRESS}
+                    </a>
                   </div>
                 </div>
               </div>
               <div className="flex flex-row gap-3 mb-10 w-full">
                 <a
-                  href="#"
+                  href={CONTACT_WHATSAPP_HREF}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] !text-white py-3 md:py-3.5 px-2 md:px-6 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-[#25D366]/20 active:scale-95 text-sm md:text-base min-w-0 whitespace-nowrap no-underline"
                 >
                   <MessageCircle size={20} fill="white" className="!text-white shrink-0" />

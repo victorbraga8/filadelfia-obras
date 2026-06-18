@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
+import { buildServiceWhatsAppHref } from "@/lib/contact";
+
 import { Button } from "../ui/button";
 import type { ServiceItem } from "./services-content";
 
@@ -15,6 +17,7 @@ export function ServiceDetailsModal({
   onClose,
 }: ServiceDetailsModalProps) {
   const Icon = service.icon;
+  const serviceWhatsAppHref = buildServiceWhatsAppHref(service.title);
 
   useEffect(() => {
     const scrollY = window.scrollY;
@@ -187,7 +190,13 @@ export function ServiceDetailsModal({
                   size="lg"
                   className="mt-5 w-full rounded-xl !bg-blue-600 !text-white hover:!bg-blue-500"
                 >
-                  <a href="#contato" onClick={onClose} className="!text-white">
+                  <a
+                    href={serviceWhatsAppHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={onClose}
+                    className="!text-white"
+                  >
                     Mais informações
                     <ArrowUpRight className="h-4 w-4 !text-white" />
                   </a>
