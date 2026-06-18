@@ -1,3 +1,5 @@
+import type { ChangeEvent, FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Instagram, Mail, MapPin, Phone, MessageCircle, Send, User, Building, FileText } from "lucide-react";
 
 import {
@@ -6,9 +8,92 @@ import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_PHONE_HREF,
   CONTACT_WHATSAPP_HREF,
+  buildContactFormWhatsAppHref,
+  formatBrazilianPhoneInput,
+  getContactFormSpamBlockReason,
 } from "@/lib/contact";
 
+const contactLabelClassName =
+  "block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 group-focus-within:text-blue-700 transition-colors";
+const contactIconClassName =
+  "absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5 group-focus-within:text-blue-700 transition-colors";
+const contactControlClassName =
+  "w-full rounded-xl border border-slate-300 bg-white text-slate-950 shadow-sm outline-none transition-all font-semibold placeholder:text-slate-400 hover:border-slate-400 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/20 focus:shadow-[0_10px_30px_-18px_rgba(37,99,235,0.75)] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_white] [&:-webkit-autofill]:[-webkit-text-fill-color:#020617] [&:-webkit-autofill]:caret-slate-950";
+const contactInputClassName = `${contactControlClassName} pl-12 pr-4 py-4`;
+const contactPhonePattern = "^\\([0-9]{2}\\) [0-9]{4,5}-[0-9]{4}$";
+const submitFeedbackDurationMs = 8000;
+
+function getFormFieldValue(formData: FormData, fieldName: string) {
+  const value = formData.get(fieldName);
+
+  return typeof value === "string" ? value : "";
+}
+
 export default function Contato() {
+  const formStartedAtRef = useRef(0);
+  const lastSubmittedAtRef = useRef(0);
+  const [phoneValue, setPhoneValue] = useState("");
+  const [submitFeedback, setSubmitFeedback] = useState<string | null>(null);
+  const [submitFeedbackTone, setSubmitFeedbackTone] = useState<"error" | "success" | null>(null);
+
+  useEffect(() => {
+    if (!submitFeedback) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setSubmitFeedback(null);
+      setSubmitFeedbackTone(null);
+    }, submitFeedbackDurationMs);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [submitFeedback]);
+
+  const handleFormInteraction = () => {
+    if (formStartedAtRef.current === 0) {
+      formStartedAtRef.current = Date.now();
+    }
+  };
+
+  const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPhoneValue(formatBrazilianPhoneInput(event.target.value));
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const now = Date.now();
+    const spamBlockReason = getContactFormSpamBlockReason({
+      elapsedMs: formStartedAtRef.current > 0 ? now - formStartedAtRef.current : 0,
+      honeypotValue: getFormFieldValue(formData, "companyWebsite"),
+      lastSubmittedAt: lastSubmittedAtRef.current,
+      now,
+    });
+
+    if (spamBlockReason) {
+      setSubmitFeedbackTone("error");
+      setSubmitFeedback(spamBlockReason);
+      return;
+    }
+
+    const whatsappHref = buildContactFormWhatsAppHref({
+      fullName: getFormFieldValue(formData, "fullName"),
+      phone: getFormFieldValue(formData, "phone"),
+      email: getFormFieldValue(formData, "email"),
+      company: getFormFieldValue(formData, "company"),
+      subject: getFormFieldValue(formData, "subject"),
+      details: getFormFieldValue(formData, "details"),
+    });
+
+    lastSubmittedAtRef.current = now;
+    setSubmitFeedbackTone("success");
+    setSubmitFeedback("Recebemos sua mensagem. O WhatsApp foi aberto para concluir o envio.");
+
+    window.open(whatsappHref, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section id="contato" className="py-20 md:py-24 bg-slate-50 relative overflow-hidden">
 
@@ -118,45 +203,58 @@ export default function Contato() {
               </div>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onFocus={handleFormInteraction} onChange={handleFormInteraction} onSubmit={handleSubmit}>
+              <div
+                className="absolute left-[-5000px] top-auto h-px w-px overflow-hidden"
+                aria-hidden="true"
+              >
+                <label htmlFor="company-website">Site da empresa</label>
+                <input
+                  id="company-website"
+                  name="companyWebsite"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="group relative">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">Nome Completo</label>
+                  <label htmlFor="contact-full-name" className={contactLabelClassName}>Nome Completo</label>
                   <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-blue-600 transition-colors" />
-                    <input type="text" className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/10 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400" placeholder="Digite seu nome" />
+                    <User className={contactIconClassName} />
+                    <input id="contact-full-name" name="fullName" type="text" autoComplete="name" minLength={3} maxLength={120} required className={contactInputClassName} placeholder="Digite seu nome" />
                   </div>
                 </div>
                 <div className="group relative">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">Telefone</label>
+                  <label htmlFor="contact-phone" className={contactLabelClassName}>Telefone</label>
                   <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-blue-600 transition-colors" />
-                    <input type="tel" className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/10 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400" placeholder="(21) 00000-0000" />
+                    <Phone className={contactIconClassName} />
+                    <input id="contact-phone" name="phone" type="tel" autoComplete="tel" inputMode="numeric" minLength={14} maxLength={15} pattern={contactPhonePattern} value={phoneValue} onChange={handlePhoneChange} required className={contactInputClassName} placeholder="(21) 00000-0000" />
                   </div>
                 </div>
               </div>
 
               <div className="group relative">
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">Email Corporativo</label>
+                <label htmlFor="contact-email" className={contactLabelClassName}>Email Corporativo</label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-blue-600 transition-colors" />
-                  <input type="email" className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/10 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400" placeholder="seu@email.com" />
+                  <Mail className={contactIconClassName} />
+                  <input id="contact-email" name="email" type="email" autoComplete="email" maxLength={120} className={contactInputClassName} placeholder="seu@email.com" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="group relative">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">Empresa</label>
+                  <label htmlFor="contact-company" className={contactLabelClassName}>Empresa</label>
                   <div className="relative">
-                    <Building className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-blue-600 transition-colors" />
-                    <input type="text" className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/10 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400" placeholder="Nome da empresa" />
+                    <Building className={contactIconClassName} />
+                    <input id="contact-company" name="company" type="text" autoComplete="organization" maxLength={120} className={contactInputClassName} placeholder="Nome da empresa" />
                   </div>
                 </div>
                 <div className="group relative">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">Assunto</label>
+                  <label htmlFor="contact-subject" className={contactLabelClassName}>Assunto</label>
                   <div className="relative">
-                    <FileText className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-blue-600 transition-colors" />
-                    <select className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/10 outline-none transition-all font-medium text-slate-900 appearance-none cursor-pointer">
+                    <FileText className={contactIconClassName} />
+                    <select id="contact-subject" name="subject" required className={`${contactInputClassName} appearance-none cursor-pointer`}>
                       <option>Orçamento de Obra</option>
                       <option>Limpeza Industrial</option>
                       <option>Aluguel de Caminhão</option>
@@ -168,18 +266,29 @@ export default function Contato() {
               </div>
 
               <div className="group">
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">Detalhes do Projeto</label>
-                <textarea rows={4} className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/10 outline-none transition-all font-medium text-slate-900 resize-none placeholder:text-slate-400" placeholder="Descreva sua necessidade com o máximo de detalhes possível..."></textarea>
+                <label htmlFor="contact-details" className={contactLabelClassName}>Detalhes do Projeto</label>
+                <textarea id="contact-details" name="details" rows={4} minLength={20} maxLength={1500} required className={`${contactControlClassName} px-4 py-4 resize-none`} placeholder="Descreva sua necessidade com o máximo de detalhes possível..."></textarea>
               </div>
               <div className="flex justify-center">
-                <button type="button" className="md:w-1/2! w-full bg-linear-to-r! from-blue-600! to-blue-500! hover:from-blue-500! hover:to-blue-400! text-white! font-bold! py-2! rounded-lg! transition-all! duration-300! shadow-[0_4px_15px_-5px_rgba(37,99,235,0.4)]! hover:shadow-[0_8px_25px_-5px_rgba(37,99,235,0.5)]! hover:-translate-y-0.5! flex! items-center! justify-center! gap-2! group! active:scale-[0.99]! text-sm!">
+                <button type="submit" className="md:w-1/2! w-full bg-linear-to-r! from-blue-600! to-blue-500! hover:from-blue-500! hover:to-blue-400! text-white! font-bold! py-2! rounded-lg! transition-all! duration-300! shadow-[0_4px_15px_-5px_rgba(37,99,235,0.4)]! hover:shadow-[0_8px_25px_-5px_rgba(37,99,235,0.5)]! hover:-translate-y-0.5! flex! items-center! justify-center! gap-2! group! active:scale-[0.99]! text-sm!">
                   <span className="text-lg">Enviar Solicitação</span>
                   <Send size={18} className="text-blue-100! group-hover:text-white! group-hover:translate-x-0.5! group-hover:-translate-y-0.5! transition-all! duration-300!" />
                 </button>
               </div>
-              <p className="text-center text-md text-slate-400 mt-4 flex items-center justify-center gap-2">
-                <ShieldCheckIcon size={18} className="text-green-500" />
-                Seus dados estão 100% protegidos.
+              {submitFeedback ? (
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className={`text-center text-sm ${
+                    submitFeedbackTone === "error" ? "text-amber-600" : "text-green-600"
+                  }`}
+                >
+                  {submitFeedback}
+                </p>
+              ) : null}
+              <p className="mx-auto mt-4 flex max-w-xl items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-center text-sm font-medium text-slate-600">
+                <ShieldCheckIcon size={16} className="text-green-600" />
+                Mensagem e dados seguem pelo WhatsApp com criptografia de ponta a ponta.
               </p>
             </form>
           </div>
