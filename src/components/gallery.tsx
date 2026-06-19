@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, Plus, ArrowRight } from "lucide-react";
 
+import { SERVICE_CATALOG_DOWNLOAD_HREF } from "@/lib/assets";
+
 const galleryImages = [
   {
     id: 1,
@@ -52,10 +54,14 @@ export default function Gallery() {
             </h2>
           </div>
 
-          <button className="hidden md:flex items-center gap-3 px-6! py-3! rounded-xl! bg-gradient-to-r! from-slate-900! to-slate-800! text-white! font-bold! text-sm! uppercase! tracking-wider! transition-all duration-300 border! border-slate-700! hover:border-blue-500! hover:from-blue-900! hover:to-slate-900! group">
+          <a
+            href={SERVICE_CATALOG_DOWNLOAD_HREF}
+            download
+            className="hidden md:flex items-center gap-3 px-6! py-3! rounded-xl! bg-gradient-to-r! from-slate-900! to-slate-800! text-white! font-bold! text-sm! uppercase! tracking-wider! transition-all duration-300 border! border-slate-700! hover:border-blue-500! hover:from-blue-900! hover:to-slate-900! group"
+          >
             <span>Ver portfólio completo</span>
             <ArrowRight size={18} className="text-blue-400! group-hover:text-white! group-hover:translate-x-1 transition-all" />
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[250px] md:auto-rows-[280px] gap-4">
@@ -89,9 +95,13 @@ export default function Gallery() {
         </div>
 
         <div className="mt-8 flex md:hidden justify-center">
-          <button className="flex items-center gap-2 text-sm font-bold  hover:text-blue-600 transition-colors">
+          <a
+            href={SERVICE_CATALOG_DOWNLOAD_HREF}
+            download
+            className="flex items-center gap-2 text-sm font-bold  hover:text-blue-600 transition-colors"
+          >
             <Plus size={16} /><span className="text-white!"> Ver portfólio completo</span>
-          </button>
+          </a>
         </div>
 
       </div>

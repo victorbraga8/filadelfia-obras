@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
+import { SERVICE_CATALOG_DOWNLOAD_HREF } from "@/lib/assets";
 import { buildServiceWhatsAppHref } from "@/lib/contact";
 
 import { Button } from "../ui/button";
@@ -146,7 +147,7 @@ export function ServiceDetailsModal({
                   className="rounded-xl! bg-blue-600! text-white! transition-colors! hover:bg-blue-500!"
                 >
                   <a
-                    href="/Filadelfia_Apresentacao.pptx"
+                    href={SERVICE_CATALOG_DOWNLOAD_HREF}
                     download
                     className="text-white!"
                   >
