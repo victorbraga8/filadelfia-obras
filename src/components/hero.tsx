@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence, type PanInfo } from 'framer-motion';
 
 import { Button } from './ui/button';
@@ -101,7 +101,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
             onDragEnd={handleDragEnd}
             className="max-w-4xl cursor-grab pb-32 active:cursor-grabbing md:pb-0"
           >
-            <div className="mb-4 flex min-h-7 items-center gap-4 md:mb-6">
+            <div className="mb-4 flex min-h-7 items-center gap-4 md:mb-6 hidden md:flex">
               <div className="h-1 w-8 bg-blue-500 md:w-12" />
               <span className="text-[11px] leading-none font-bold tracking-widest text-blue-400 uppercase md:text-sm">
                 {slides[current].subtitle}
@@ -150,17 +150,16 @@ export default function Hero({ scrollToSection }: HeroProps) {
                 aria-label={`Ir para slide ${idx + 1}`}
               >
                 <div
-                  className={`rounded-full! transition-all duration-500 ${
-                    current === idx
-                      ? 'h-1.5! w-8! bg-blue-500! shadow-[0_0_10px_rgba(59,130,246,0.8)]!'
-                      : 'h-2! w-2! bg-white/30! group-hover:bg-white/80!'
-                  }`}
+                  className={`rounded-full! transition-all duration-500 ${current === idx
+                    ? 'h-1.5! w-8! bg-blue-500! shadow-[0_0_10px_rgba(59,130,246,0.8)]!'
+                    : 'h-2! w-2! bg-white/30! group-hover:bg-white/80!'
+                    }`}
                 />
               </button>
             ))}
           </div>
 
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <Button
               variant="ghost"
               size="icon"
@@ -178,7 +177,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
             >
               <ChevronRight size={24} />
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
