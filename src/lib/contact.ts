@@ -1,6 +1,6 @@
 export const CONTACT_PHONE_DISPLAY = "(21) 97319-2305";
 export const CONTACT_PHONE_DIGITS = "5521973192305";
-export const CONTACT_EMAIL_ADDRESS = "contato@filadelfiaobras.com.br";
+export const CONTACT_EMAIL_ADDRESS = "comercial@filadelfiaobras.com.br";
 export const CONTACT_FORM_MIN_FILL_TIME_MS = 4000;
 export const CONTACT_FORM_SUBMIT_COOLDOWN_MS = 30000;
 

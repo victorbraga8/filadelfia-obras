@@ -70,7 +70,7 @@ export const serviceItems: ServiceItem[] = [
     contactCardCopy:
       "Solicite um orçamento rápido e saiba como nossa equipe pode ajudar na sua obra.",
     icon: Wrench,
-    image: "/predial.avif",
+    image: "/predial.jpg",
     features: ["Pequenas Reformas", "Concreto Armado", "Impermeabilização"],
     highlights: [
       "Reformas civis rápidas com alto controle de qualidade.",
